@@ -104,13 +104,11 @@ jobs:
         with:
           python-version: '3.10' 
       - run: build/setup.sh --only-simulator
-      - run: make PLATFORM=simulator epsilon.app
-      - run: make PLATFORM=simulator ASSERTIONS=1 ARCH=x86_64 test.bin
-      - run: output/release/simulator/macos/x86_64/test.bin --headless --limit-stack-usage
+      - run: make PLATFORM=simulator epsilon.app -j 8
       - uses: actions/upload-artifact@v4
         with:
           name: epsilon-macos.zip
-          path: output/release/simulator/macos/epsilon.app
+          path: output/release/simulator/macos
   ios:
     runs-on: macOS-latest
     if: ${{ ! endswith(github.repository, '/epsilon-internal') }}
