@@ -103,7 +103,7 @@ jobs:
       - run: make PLATFORM=simulator ASSERTIONS=1 test.exe
       - run: ./output/release/simulator/windows/test.exe --headless --limit-stack-usage
       - run: make -j8 userland.A.elf
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: epsilon-windows.exe
           path: output/release/simulator/windows/epsilon.exe
@@ -118,7 +118,7 @@ jobs:
       - run: build/setup.sh --only-simulator
       - run: make PLATFORM=simulator TARGET=web ASSERTIONS=1 epsilon.html test.js
       - run: timeout 5m node output/release/simulator/web/test.js --headless --limit-stack-usage
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: epsilon.html
           path: output/release/simulator/web/epsilon.html
@@ -132,7 +132,7 @@ jobs:
       - run: build/setup.sh --only-simulator
       - run: make PLATFORM=simulator ASAN=1 TIDY=1 ASSERTIONS=1 epsilon.bin test.bin
       - run: output/release/simulator/linux/test.bin --headless --limit-stack-usage
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ (github.repository != 'numworks/epsilon-internal') }}
         with:
           name: epsilon-linux.bin
@@ -146,7 +146,7 @@ jobs:
       - run: make PLATFORM=simulator ASSERTIONS=1 ARCH=x86_64 test.bin
       - run: output/release/simulator/macos/x86_64/test.bin --headless --limit-stack-usage
       - run: make PLATFORM=simulator ASSERTIONS=1 epsilon.app
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: epsilon-macos.zip
           path: output/release/simulator/macos/epsilon.app
@@ -159,7 +159,7 @@ jobs:
       - run: make PLATFORM=simulator TARGET=ios EPSILON_TELEMETRY=0 ASSERTIONS=1 epsilon.ipa
       - run: make PLATFORM=simulator TARGET=ios EPSILON_TELEMETRY=0 ASSERTIONS=1 test.ipa
       - run: make PLATFORM=simulator TARGET=ios EPSILON_TELEMETRY=0 APPLE_PLATFORM=ios-simulator
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: epsilon-ios.ipa
           path: output/release/simulator/ios/epsilon.ipa
