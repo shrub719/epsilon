@@ -100,6 +100,9 @@ jobs:
     if: ${{ ! endswith(github.repository, '/epsilon-internal') }}
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.6' 
       - run: build/setup.sh --only-simulator
       - run: make PLATFORM=simulator epsilon.app
       - run: make PLATFORM=simulator ASSERTIONS=1 ARCH=x86_64 test.bin
