@@ -1,5 +1,10 @@
 name: Android Build
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      debug:
+       type: boolean
+       default: 'false'
 
 env:
   MAKEFLAGS: ${{ (github.repository == 'numworks/epsilon-internal') && '-j32' || '-j2' }}
