@@ -1,11 +1,6 @@
 name: Continuous Integration
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
+  push
 
 env:
   MAKEFLAGS: ${{ endswith(github.repository, '/epsilon-internal') && '-j32' || '-j2' }} ${{ (github.job == 'device') && 'EMBED_EXTRA_DATA=1' }}
